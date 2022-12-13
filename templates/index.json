@@ -1,11 +1,18 @@
 {
   "sections": {
     "main": {
-      "type": "homepage"
+      "type": "homepage",
+      "settings": {
+      }
     },
     "featuredCollection": {
-      "type": "featuredCollection"
+      "type": "featuredCollection",
+      "settings": {
+      }
     }
   },
-  "order": ["main", "featuredCollection"]
+  "order": [
+    "main",
+    "featuredCollection"
+  ]
 }
