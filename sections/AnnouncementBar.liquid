@@ -1,0 +1,26 @@
+<section class="bg-[{{section.settings.color_accent}}] text-white flex justify-center py-2 text-[13px]">
+  <p>{{section.settings.announcementText | upcase}}</p>
+</section>
+
+
+{% schema %}
+
+
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcementText",
+        "label": "announcementText.text",
+        "default": "FREE SHIPPING IN THE EU FOR ORDERS OVER €200"
+      }, {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Background Color",
+        "default": "#000000"
+      }
+
+    ]
+  }
+{% endschema %}
