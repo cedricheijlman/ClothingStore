@@ -1,32 +1,37 @@
-{% assign current_variant = product.selected_or_first_available_variant %}
-{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
-{% for image in product.images %}
-  <a href="{{ image.src | img_url: 'large' }}">
-    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-  </a>
-{% endfor %}
-<h1>{{ product.title }}</h1>
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-  <select name="id" id="productSelect">
-    {% for variant in product.variants %}
-      {% if variant.available %}
-        <option value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-      {% else %}
-        <option disabled="disabled">
-          {{ variant.title }} - sold out
-        </option>
-      {% endif %}
-    {% endfor %}
-  </select>
-  {{ current_variant.price | money }}
-  <label for="Quantity">quantity</label>
-  <input type="number" id="Quantity" name="quantity" value="1" min="1">
-  <button type="submit" name="add" id="AddToCart">Add to cart</button>
-</form>
-<div>{{ product.description }}</div>
+<section class="flex justify-between">
+
+  <div class="w-1/2 h-ful flex items-center flex-col justify-center p-20">
+    <img class=" m-4 pb-10" src=" {{ product.images[0] | img_url: '600x850' }} "/>
+
+
+  </div>
+
+  <section class=" flex flex-col justify-center p-10 w-1/2">
+    <h1 class="text-[24px] font-bold">{{ product.title | upcase }}</h1>
+    <p>{{product.price | money}}</p>
+
+    <section name="id" class="flex my-4">
+      {% for variant in product.variants %}
+
+        <label class=" cursor-pointer border-2 text-[12px] w-[45px] h-[45px] flex items-center justify-center mr-2" value="{{ variant.id }}">
+          {{ variant.title }}
+        </label>
+
+      {% endfor %}
+    </section>
+
+    <section class="max-w-[450px] cursor-pointer border bg-black flex justify-center items-center py-3 mb-2 ">
+      <a class="text-white uppercase font-bold">Add to cart</a>
+    </section>
+
+    <div class="mt-4">
+      <p class="text-[12px]">{{ product.description }}</p>
+    </div>
+  </section>
+
+</section>
+
+
 
 {% schema %}
   {

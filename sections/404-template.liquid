@@ -1,18 +1,43 @@
-<h1>{{ 'general.404.title' | t }}</h1>
-<p>{{ 'general.404.subtext_html' | t }}</p>
+<section class="flex flex-col w-full items-center pt-20 justify-center">
+  <h1 class="text-[45px] font-bold">{{ section.settings.title }}</h1>
+  <p class="font-light mt-1">{{ section.settings.subtext_title }}</p>
+
+  <section class="mt-7">
+    {% if section.settings.button_url == blank %}
+      {% assign shop_url = shop.secure_url %}
+
+    {% else %}
+      {% assign shop_url = section.settings.button_url %}
+    {% endif %}
+
+    <a class="rounded  bg-[#203923] text-white px-4 py-2" href="{{ shop_url }}">{{ section.settings.button_label }}</a>
+  </section>
+</section>
 
 {% schema %}
   {
-    "name": "404",
-    "templates": [
-      "index", "product", "page"
-    ],
-    "settings": [],
-    "blocks": [
+    "name": "404 Template",
+    "settings": [
       {
-        "type": "@app"
+        "type": "text",
+        "id": "title",
+        "default": "404 Page Not Found",
+        "label": "404 Heading Title"
+      }, {
+        "type": "text",
+        "id": "subtext_title",
+        "default": "The page that you're looking for is not found.",
+        "label": "404 Heading Title"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "default": "Back to homepage",
+        "label": "Button label"
+      }, {
+        "type": "url",
+        "id": "button_url",
+        "label": "button URL"
       }
     ]
-
   }
 {% endschema %}

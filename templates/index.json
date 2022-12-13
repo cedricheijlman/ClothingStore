@@ -2,7 +2,10 @@
   "sections": {
     "main": {
       "type": "homepage"
+    },
+    "featuredCollection": {
+      "type": "featuredCollection"
     }
   },
-  "order": ["main"]
+  "order": ["main", "featuredCollection"]
 }
