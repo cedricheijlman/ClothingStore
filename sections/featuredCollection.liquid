@@ -1,3 +1,26 @@
 <section>
-  <h1>Featured Collection</h1>
+
+  <h2 class="text-[18px] font-bold uppercase">{{ section.settings.all_collections.name }}</h2>
+
+  <section class="flex">
+    {% for product in collections[section.settings.all-collections].products %}
+      {% render 'product-card', productName: product.title, productImg: product.images[0], price: product.price, productUrl: product.url  %}
+    {% endfor %}
+  </section>
+
+
 </section>
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "all-collections",
+        "label": "Collection Row"
+      }
+    ]
+  }
+{% endschema %}

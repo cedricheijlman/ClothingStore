@@ -1,0 +1,9 @@
+<section class="flex flex-col my-6 justify-center items-center uppercase font-bold">
+  <h2>Suggested Products</h2>
+  <section class="flex justify-center flex-wrap">
+    {% render 'product-card', productName: "title", price: 32 %}
+    {% render 'product-card', productName: "title", price: 32 %}
+    {% render 'product-card', productName: "title", price: 32 %}
+    {{ recommendations.products_count }}
+  </section>
+</section>

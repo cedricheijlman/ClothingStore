@@ -1,0 +1,36 @@
+<footer class="w-full p-5 border-t mt-12 max-h-[132px] border-gray-300 pt-7">
+
+
+  <article class="flex">
+    <input class="border placeholder:uppercase text-[12px] w-full max-w-[350px] border-black py-3 px-4 font-light outline-0" placeholder="Want 10%? Leave us your email"/>
+    <button class="border py-2 px-14  uppercase text-[13px] font-normal border-black border-l-0 outline-0">Subscribe</button>
+  </article>
+
+  <section class="mt-4 flex justify-between items-center placeholder:">
+     <ul class="flex items-center mt-2">
+      {% for link in section.settings.footer.links %}
+
+        <li class="border-b-1"><a class="mr-4 text-semibold font-normal text-[12px] uppercase " href="{{link.url}}">{{link.title}}</a></li>
+      </h2>
+
+    {% endfor %}
+    </ul>
+
+    <p class="text-[12px]">Logo</p>
+  </section>
+</footer>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer",
+        "default": "footer",
+        "label": "Main Footer Menu"
+      }
+    ]
+  }
+{% endschema %}

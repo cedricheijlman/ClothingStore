@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": {
+      "type": "faqs-template"
+    }
+  },
+  "order": ["main"]
+}

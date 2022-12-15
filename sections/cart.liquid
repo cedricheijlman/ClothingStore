@@ -1,48 +1,88 @@
-{% if cart.item_count > 0 %}
-  <h1>cart</h1>
-  <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
-        {% for item in cart.items %}
-          <tr>
-            <td>
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}
-                {{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}
-                {{ discount.title }}{% endfor %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div>
-      <p>sub total : {{ cart.total_price | money }}</p>
-      <button type="submit" name="update">Update</button>
-      <button type="submit" name="checkout">Checkout</button>
-    </div>
-  </form>
-{% else %}
-  <h2>cart</h2>
-  Cart is empty
-{% endif %}
+<section class="px-14">
+
+  {% if cart.item_count > 0 %}
+
+    <form action="/cart" method="post" novalidate class="mt-16">
+      <table class="w-full">
+        <thead class="border-b border-gray-300">
+          <th class="text-[15px] pb-1 font-normal text-left">Product
+          </th>
+          <th class="text-[15px] pb-1 font-normal text-right">Price</th>
+          <th class="text-[15px] pb-1 font-normal text-center">Quantity</th>
+          <th class="text-[15px] pb-1 font-normal text-right">Total</th>
+        </thead>
+        <tbody class="w-full">
+          {% for item in cart.items %}
+            <tr>
+              <td class="flex py-6">
+
+                <a href="{{ item.url | within: collections.all }}">
+                  <img src="{{ item | img_url: '100x100' }}" alt="{{ item.title | escape }}">
+                </a>
+                <section class="flex flex-col  ml-4 ">
+                  <a class="font-semibold" href="{{ item.url }}">{{ item.product.title }}</a>
+                  <p class="font-light text-[13px]">Size: {{ item.variant.title }}</p>
+
+                </section>
+              </td>
+              <td class="align-top text-right py-6">{{ item.price | money_with_currency }}</td>
+              <td class=" align-top py-6  justify-center">
+                <section class="w-full  flex justify-center">
+                  <div class="flex border justify-between w-[120px] p-2 items-center">
+                    <a id="{{variant.id}}" href="/cart/change?line=0&quantity=0">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"/>
+                      </svg>
+                    </a>
+
+
+                    <p>
+                      {{item.quantity}}
+                    </p>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/>
+                    </svg>
+                  </div>
+                </section>
+              </td>
+              <td class="text-right align-top py-6">
+                {% if item.original_line_price != item.line_price %}
+                  {{ item.original_line_price | money_with_currency }}{% endif %}
+                {{ item.line_price | money }}
+                {% for discount in item.discounts %}
+                  {{ discount.title }}{% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <section class="flex w-full justify-center mb-4 items-center">
+        <p class="font-normal uppercase text-[14px]">Update Cart</p>
+        <span class="mx-2 font-normal text-[14px]">|</span>
+        <p class="font-normal text-[14px]">Continue Shopping</p>
+      </section>
+
+      <section class="flex justify-between border-y border-black py-4 items-center">
+        <p class="font-semibold text-[19px]">Subtotal</p>
+        <p class="font-semibold text-[19px]">{{ cart.total_price | money_with_currency }}</p>
+      </section>
+
+      <section class="w-full flex justify-center items-center mt-4">
+        <button class="uppercase border font-semibold text-[14px] bg-black text-white border-black px-16 py-3">Check Out</button>
+      </section>
+    </form>
+  {% else %}
+
+    <section class="min-h-[100%] flex items-center flex-col py-12">
+      <h2 class="text-[16px] mb-1">Your cart is currently empty.
+      </h2>
+      <a href="" class="border-b pb border-black  text-[14px] cursor-pointer">Continue Shopping</a>
+
+    </section>
+  {% endif %}
+
+
+
+</section>
