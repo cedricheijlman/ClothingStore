@@ -26,25 +26,28 @@
                 </section>
               </td>
               <td class="align-top text-right py-6">{{ item.price | money_with_currency }}</td>
-              <td class=" align-top py-6  justify-center">
-                <section class="w-full  flex justify-center">
+              <td class=" align-top py-6  justify-center text-center">
+                <section class="w-full  flex justify-center h-[40px]">
                   <div class="flex border justify-between w-[120px] p-2 items-center">
-                    <a id="{{variant.id}}" href="/cart/change?line=0&quantity=0">
+                    <button type="submit" name="updates[]" value="{{item.quantity | minus: 1}}">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"/>
                       </svg>
-                    </a>
+                    </button>
 
 
                     <p>
                       {{item.quantity}}
                     </p>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/>
-                    </svg>
+                    <button type="submit" class="h-full" name="updates[]" value="{{item.quantity | plus: 1}}">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/>
+                      </svg>
+                    </button>
                   </div>
                 </section>
+                <a href="{{ item.url_to_remove }}" class="mt-2 text-[12px] underline text-gray-500 cursor-pointer">Remove</a>
               </td>
               <td class="text-right align-top py-6">
                 {% if item.original_line_price != item.line_price %}
