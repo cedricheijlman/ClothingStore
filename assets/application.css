@@ -1180,6 +1180,56 @@ video {
   max-width: 140px;
 }
 
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-\[pulse_1s_ease-in\] {
+  animation: pulse 1s ease-in;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-\[pulse_0\.5s_ease-in\] {
+  animation: pulse 0.5s ease-in;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-\[pulse_0\.8s_ease-in\] {
+  animation: pulse 0.8s ease-in;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-\[pulse_0\.1s_ease-in\] {
+  animation: pulse 0.1s ease-in;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

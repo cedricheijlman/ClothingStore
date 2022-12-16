@@ -1,4 +1,4 @@
-<section class="px-14">
+<section class="px-14 animate-[pulse_1s_ease-in]">
 
   {% if cart.item_count > 0 %}
 
@@ -72,8 +72,14 @@
         <p class="font-semibold text-[19px]">{{ cart.total_price | money_with_currency }}</p>
       </section>
 
+      <section class="flex justify-center w-full font-normal text-[14px] mt-4">
+        <p>Tax included.
+          <span class="underline">Shipping</span>
+          Calculated at checkout.</p>
+      </section>
+
       <section class="w-full flex justify-center items-center mt-4">
-        <button class="uppercase border font-semibold text-[14px] bg-black text-white border-black px-16 py-3">Check Out</button>
+        <button type="submit" name="checkout" value="Checkout" class="uppercase border font-semibold text-[14px] bg-black text-white border-black px-16 py-3">Check Out</button>
       </section>
     </form>
   {% else %}
