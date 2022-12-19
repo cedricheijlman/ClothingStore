@@ -1,40 +1,33 @@
-{% paginate blog.articles by 5 %}
+<section class="flex items-center flex-col w-full">
+  <h1 class="text-[34px] font-light my-4">{{ blog.title }}</h1>
+  <section class="flex justify-center w-full flex-wrap">
+    {% for article in blog.articles %}
 
-  <h1>{{ blog.title }}</h1>
-  {% for article in blog.articles %}
-    <div>
-      <h2>
-        <a href="{{ article.url }}">{{ article.title }}</a>
-      </h2>
-      {{ article.author }} @ {{ article.created_at }}
-      <div>
-        {% if article.excerpt.size > 0 %}
-          {{ article.excerpt }}
-        {% else %}
-          <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-        {% endif %}
-      </div>
-    </div>
-  {% endfor %}
+      <article class="max-w-[100%] md:max-w-[45%] lg:max-w-[22%] mx-3 mb-4">
+        <a href="{{ article.url  }}">
+          {% if article.image %}
+            <img class="object-cover h-[270px] w-full" src="{{ article.image | img_url: 'master' }}" />
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'w-full' }}
+          {% endif %}
+          <h2 class="font-bold uppercase text-[14px] my-2">{{ article.title }}</h2>
 
-  {% if paginate.pages > 1 %}
-    {{ paginate | default_pagination }}
-  {% endif %}
+          {% if article.excerpt.size < 0 %}
+            {% else %}
+              <p class="font-normal text-[13px]">{{ article.content | strip_html | truncatewords: 35 }}</p>
+          {% endif %}
+        </a>
+      </article>
 
-{% endpaginate %}
+
+
+    {% endfor %}
+  </section>
+
+</section>
 
 {% schema %}
   {
-    "name": "Blog",
-    "templates": [
-      "index", "product", "page"
-    ],
-    "settings": [],
-    "blocks": [
-      {
-        "type": "@app"
-      }
-    ]
-
+    "name": "Blog"
   }
 {% endschema %}

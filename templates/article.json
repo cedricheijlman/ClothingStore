@@ -23,9 +23,8 @@
         "title",
         "published_date",
         "thumbnail",
-        "author",
-
-        "content"
+        "content",
+        "author"
       ]
     }
   },

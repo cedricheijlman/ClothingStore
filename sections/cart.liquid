@@ -2,7 +2,11 @@
 
   {% if cart.item_count > 0 %}
 
-    <form action="/cart" method="post" novalidate class="mt-16">
+    <form
+      action="{{ routes.cart_url }}"
+      method="post"
+      novalidate
+      class="mt-16">
       <table class="w-full">
         <thead class="border-b border-gray-300">
           <th class="text-[15px] pb-1 font-normal text-left">Product
@@ -29,20 +33,45 @@
               <td class=" align-top py-6  justify-center text-center">
                 <section class="w-full  flex justify-center h-[40px]">
                   <div class="flex border justify-between w-[120px] p-2 items-center">
-                    <button type="submit" name="updates[]" value="{{item.quantity | minus: 1}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"/>
+                    <button
+                      type="submit"
+                      name="updates[]"
+                      value="{{item.quantity | minus: 1}}">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4 cursor-pointer">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M18 12H6" />
                       </svg>
                     </button>
 
 
                     <p>
-                      {{item.quantity}}
+                      {{ item.quantity }}
                     </p>
 
-                    <button type="submit" class="h-full" name="updates[]" value="{{item.quantity | plus: 1}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 cursor-pointer">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/>
+                    <button
+                      type="submit"
+                      class="h-full"
+                      name="updates[]"
+                      value="{{item.quantity | plus: 1}}">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4 cursor-pointer">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 6v12m6-6H6" />
                       </svg>
                     </button>
                   </div>
@@ -79,7 +108,11 @@
       </section>
 
       <section class="w-full flex justify-center items-center mt-4">
-        <button type="submit" name="checkout" value="Checkout" class="uppercase border font-semibold text-[14px] bg-black text-white border-black px-16 py-3">Check Out</button>
+        <button
+          type="submit"
+          name="checkout"
+          value="Checkout"
+          class="uppercase border font-semibold text-[14px] bg-black text-white border-black px-16 py-3">Check Out</button>
       </section>
     </form>
   {% else %}
@@ -87,7 +120,7 @@
     <section class="min-h-[100%] flex items-center flex-col py-12">
       <h2 class="text-[16px] mb-1">Your cart is currently empty.
       </h2>
-      <a href="" class="border-b pb border-black  text-[14px] cursor-pointer">Continue Shopping</a>
+      <a href="{{ routes.all_products_collection_url }}" class="border-b pb border-black  text-[14px] cursor-pointer">Continue Shopping</a>
 
     </section>
   {% endif %}

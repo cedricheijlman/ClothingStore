@@ -6,8 +6,8 @@
     <button class="border py-2 px-14  uppercase text-[13px] font-normal border-black border-l-0 outline-0">Subscribe</button>
   </article>
 
-  <section class="mt-4 flex justify-between items-center placeholder:">
-     <ul class="flex items-center mt-2">
+  <section class="mt-4 flex justify-between items-center">
+     <ul class="flex items-center mt-2 flex-wrap">
       {% for link in section.settings.footer.links %}
 
         <li class="border-b-1"><a class="mr-4 text-semibold font-normal text-[12px] uppercase " href="{{link.url}}">{{link.title}}</a></li>

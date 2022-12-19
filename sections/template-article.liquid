@@ -32,7 +32,7 @@
       {%- when 'featured_image' -%}
       <img
         itemprop="image"
-        class="px-10 py-4"
+        class="px-10 py-4 w-full max-w-[800px] max-h-[900px]"
         src="{{ article.image | img_url: 'master'}}"
         alt="" />
       {%- when 'article_content' -%}
@@ -45,6 +45,23 @@
   {% endfor %}
 
 </article>
+
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+                      "@type": "BlogPosting",
+                      "headline": {{ article.title | json }},
+  "articleBody": {{ article.content | strip_html | json }},
+  {% if article.excerpt != blank %}
+    "description": {{ article.excerpt | strip_html | json }},
+  {% endif %}
+  "image": [
+  {{ article.image | img_url: "medium" | prepend: 'https:' | json }}
+  ]
+  {% if article.image %}{% endif %}
+  }
+
+</script>
 
 {%- schema -%}
   {
