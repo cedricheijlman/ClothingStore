@@ -1,0 +1,78 @@
+<section class="flex justify-center flex-col items-center mt-12">
+
+  {% for block in section.blocks %}
+
+    {%- case block.type -%}
+      {%- when 'article_title' -%}
+
+
+        <h1 class="text-[47px] font-bold">{{ article.title }}</h1>
+
+      {%- when 'article_author' -%}
+
+        {% if section.settings.enable_author %}
+          <p class="font-light italic">{{ article.author }}</p>
+        {% endif %}
+
+      {%- when 'article_published_date' -%}
+        {% if section.settings.enable_published_date %}
+          <time class="text-gray-600 font-light text-[13px] my-4" datetime="{{ article.published_at | date: format: 'abbreviated_date' }}">{{ article.published_at | date: format: 'abbreviated_date'}}</time>
+        {% endif %}
+
+      {%- when 'featured_image' -%}
+        <img class="px-10 py-4" src="{{ article.image | img_url: 'master'}}" alt=""/>
+      {%- when 'article_content' -%}
+        <p class="max-w-[670px] py-10 font-normal text-[12px] text-center mx-14">{{ article.content }}</p>
+
+      {%- else -%}
+
+    {%- endcase -%}
+
+  {% endfor %}
+
+</section>
+
+{%- schema -%}
+  {
+    "name": "Template Article",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_author",
+        "default": true,
+        "label": "Display Author Name"
+      }, {
+        "type": "checkbox",
+        "id": "enable_published_date",
+        "default": true,
+        "label": "Display Published Date"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "article_title",
+        "name": "Title",
+        "limit": 1
+      },
+      {
+        "type": "article_author",
+        "name": "Author",
+        "limit": 1
+      },
+      {
+        "type": "article_published_date",
+        "name": "Published Date",
+        "limit": 1
+      },
+      {
+        "type": "featured_image",
+        "name": "Thumbnail",
+        "limit": 1
+      }, {
+        "type": "article_content",
+        "name": "Content",
+        "limit": 1
+      }
+    ]
+  }
+{%- endschema -%}
