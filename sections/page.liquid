@@ -1,9 +1,6 @@
-<h1>{{ page.title }}</h1>
-<div>{{page.content}}</div>
+<section class="flex items-center text-center flex-col">
 
+  <h1 class="font-normal text-[19px] uppercase mt-12">{{ page.title }}</h1>
+  <div class="mx-14 max-w-[80%]">{{ page.content }}</div>
 
-{% schema %}
-  {
-    "templates": ["index", "product", "page"]
-  }
-{% endschema %}
+</section>

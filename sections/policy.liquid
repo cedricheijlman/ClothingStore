@@ -1,0 +1,22 @@
+{% if request.path == '/policies/refund-policy' %}
+  {% assign title = shop.refund_policy.title %}
+  {% assign body = shop.refund_policy.body %}
+{% elsif request.path contains '/policies/privacy-policy' %}
+  {% assign title = shop.privacy_policy.title %}
+  {% assign body = shop.privacy_policy.body %}
+{% elsif request.path contains '/policies/terms-of-service' %}
+  {% assign title = shop.terms_of_service_policy.title %}
+  {% assign body = shop.terms_of_service_policy.body %}
+{% elsif request.path contains '/policies/shipping-policy' %}
+  {% assign title = shop.shipping_policy.title %}
+  {% assign body = shop.shipping_policy.body %}
+{% elsif request.path contains '/policies/subscription-policy' %}
+  {% assign title = shop.subscription_policy.title %}
+  {% assign body = shop.subscribtion_policy.body %}{% else %}
+
+{% endif %}
+
+<section class="flex items-center flex-col ">
+  <h1 class="text-[40px] uppercase font-bold my-9">{{ title }}</h1>
+  <span class=" max-w-[700px] mx-10">{{ body }}</span>
+</section>

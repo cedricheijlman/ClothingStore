@@ -1,10 +1,10 @@
-<section>
+<section class="flex flex-col items-center my-8">
 
-  <h2 class="text-[18px] font-bold uppercase">{{ section.settings.all_collections.name }}</h2>
+  <h2 class="text-[14px] mb-12 font-normal uppercase ">{{ section.settings.title }}</h2>
 
-  <section class="flex">
-    {% for product in collections[section.settings.all-collections].products %}
-      {% render 'product-card', productName: product.title, productImg: product.images[0], price: product.price, productUrl: product.url  %}
+  <section class="flex flex-wrap justify-center">
+    {% for product in section.settings.featured_collection.products limit: section.settings.number_of_products_to_show %}
+      {% render 'product-card', productName: product.title, productImg: product.images[0], price: product.price, productUrl: product.url %}
     {% endfor %}
   </section>
 
@@ -17,9 +17,26 @@
     "name": "Featured Collection",
     "settings": [
       {
+        "type": "text",
+        "id": "title",
+        "default": "Featured Collection",
+        "label": "Title"
+      }, {
         "type": "collection",
-        "id": "all-collections",
-        "label": "Collection Row"
+        "id": "featured_collection",
+        "label": "Collection"
+      }, {
+        "type": "range",
+        "id": "number_of_products_to_show",
+        "min": 4,
+        "max": 12,
+        "default": 4,
+        "label": "Number of products to show"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection"
       }
     ]
   }

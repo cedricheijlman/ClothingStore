@@ -20,7 +20,19 @@
     {% section 'header' %}
 
     <main role="main" class="min-h-[calc(100vh-265px)]">
-      {{ content_for_layout }}
+      {% if request.path == '/policies/refund-policy' %}
+        {% section 'policy' %}
+      {% elsif request.path contains '/policies/privacy-policy' %}
+        {% section 'policy' %}
+      {% elsif request.path contains '/policies/terms-of-service' %}
+        {% section 'policy' %}
+      {% elsif request.path contains '/policies/shipping-policy' %}
+        {% section 'policy' %}
+      {% elsif request.path contains '/policies/subscription-policy' %}
+        {% section 'policy' %}
+      {% else %}
+        {{ content_for_layout }}
+      {% endif %}
     </main>
 
     {% section 'footer' %}

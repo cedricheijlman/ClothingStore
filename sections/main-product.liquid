@@ -2,36 +2,56 @@
   <section class=" flex justify-between items-center flex-col md:flex-row">
 
     <div class="w-3/5 h-full flex items-center flex-col justify-center p-20">
-      <img class=" m-4 p-8 rounded min-w-[400px]" src=" {{ product.images[0] | img_url: '1200x1200' }} "/>
+      <img class=" m-4 p-8 rounded min-w-[400px]" src=" {{ product.images[0] | img_url: '1200x1200' }} " />
 
 
     </div>
 
     <section class=" flex flex-col p-10 w-full  md:w-2/5 justify-center">
-      <h1 class="text-[19px] font-bold">{{ product.title | upcase }}</h1>
-      <p>{{ product.price | money }}</p>
 
-      <section name="id" class="flex my-4 ">
-        {% for variant in product.variants %}
+      {%- for block in section.blocks -%}
 
-          <a href="{{ product.url }}?variant={{ variant.id }}">
-            <label class=" cursor-pointer border text-[12px] w-[45px] h-[45px] flex items-center justify-center mr-2 {% if product.selected_or_first_available_variant.id == variant.id %}border-black{% endif %}" value="{{ variant.id }}">
-              {{ variant.title }}
-            </label>
-          </a>
+        {%- case block.type -%}
+          {%- when 'product_title' -%}
+          <h1 class="text-[19px] font-bold">{{ product.title | upcase }}</h1>
 
-        {% endfor %}
-      </section>
+          {%- when 'product_price' -%}
+          <p>{{ product.price | money }}</p>
 
-      <button type="submit" class="max-w-full md:max-w-[450px] cursor-pointer border bg-black flex justify-center items-center py-3 mb-2 ">
-        <a class="text-white uppercase font-bold">Add to cart</a>
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-      </button>
+          {%- when 'product_variant_selector' -%}
+          <section name="id" class="flex my-4 ">
+            {% for variant in product.variants %}
+
+              <a href="{{ product.url }}?variant={{ variant.id }}">
+                <label class=" cursor-pointer border text-[12px] w-[45px] h-[45px] flex items-center justify-center mr-2 {% if product.selected_or_first_available_variant.id == variant.id %}border-black{% endif %}" value="{{ variant.id }}">
+                  {{ variant.title }}
+                </label>
+              </a>
+
+            {% endfor %}
+          </section>
+
+          {%- when 'product_checkout_buttons' -%}
+          <button type="submit" class="max-w-full md:max-w-[450px] cursor-pointer border bg-black flex justify-center items-center py-3 mb-2 ">
+            <a class="text-white uppercase font-bold">Add to cart</a>
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}">
+          </button>
+
+          {%- when 'product_description' -%}
+          <div class="mt-4">
+            <p class="text-[12px]">{{ product.description }}</p>
+          </div>
+
+      {%- else -%}
+
+        {% endcase %}
+
+      {% endfor %}
 
 
-      <div class="mt-4">
-        <p class="text-[12px]">{{ product.description }}</p>
-      </div>
     </section>
 
 
@@ -45,7 +65,32 @@
   {
     "name": "product",
     "tag": "section",
-    "templates": ["index", "product", "page"]
+    "blocks": [
+      {
+        "type": "product_title",
+        "name": "Title",
+        "limit": 1
+      },
+      {
+        "type": "product_price",
+        "name": "Product Price",
+        "limit": 1
+      },
+      {
+        "type": "product_variant_selector",
+        "name": "Product Variant Selector",
+        "limit": 1
+      },
+      {
+        "type": "product_description",
+        "name": "Product Description",
+        "limit": 1
+      }, {
+        "type": "product_checkout_buttons",
+        "name": "Product Checkout Buttons",
+        "limit": 1
+      }
+    ]
 
   }
 {% endschema %}
