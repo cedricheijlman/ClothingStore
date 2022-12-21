@@ -16,7 +16,16 @@
           <h1 class="text-[19px] font-bold">{{ product.title | upcase }}</h1>
 
           {%- when 'product_price' -%}
-          <p>{{ product.price | money }}</p>
+          <section class="flex items-center mt-1">
+            {% if product.price < product.compare_at_price %}
+              <p class="line-through mr-2">{{ product.compare_at_price | money }}</p>
+            {% endif %}
+            <p class="mr-2">{{ product.price | money }}</p>
+
+            {% if product.price < product.compare_at_price %}
+              <p class="uppercase bg-red-500 p-1 radius-md rounded text-white text-[14px] font-semibold">Sale</p>
+            {% endif %}
+          </section>
 
           {%- when 'product_variant_selector' -%}
           <section name="id" class="flex my-4 ">

@@ -1,0 +1,46 @@
+<section class="w-full flex items-center flex-col">
+  {% form 'customer_login' %}
+
+
+    <h1 class="text-[34px] font-bold mt-12 mb-5 uppercase">Login to your account</h1>
+
+    {% if form.errors %}
+
+      <section class="bg-red-100 border-red-400 text-red-700 px-4 py-3" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+      </section>
+
+    {% endif %}
+
+    <section>
+      <input
+        class="border w-full p-2 my-1"
+        type="email"
+        name="customer[email]"
+        id="email_address"
+        placeholder="Email Address"
+        autocomplete="email" />
+
+    </section>
+
+    {% if form.password_needed %}
+      <section>
+
+        <input
+          class="border w-full p-2 my-1"
+          placeholder="Password"
+          type="password"
+          name="customer[password]"
+          id="password"
+          autocomplete="current-password" />
+      </section>
+    {% endif %}
+
+
+    <button class="w-full bg-gray-700 text-white p-2 my-3 uppercase font-bold" type="submit">Login</button>
+
+
+  {% endform %}
+
+</section>

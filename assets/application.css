@@ -667,6 +667,11 @@ video {
   margin-bottom: 2.25rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -765,6 +770,10 @@ video {
 
 .mr-16 {
   margin-right: 4rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .block {
@@ -1425,6 +1434,10 @@ video {
   border-radius: 0.375rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1495,6 +1508,11 @@ video {
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+
+.border-red-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
 
 .bg-green-100 {
@@ -1570,6 +1588,26 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
 }
 
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1621,6 +1659,10 @@ video {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .py-2 {
@@ -1910,6 +1952,14 @@ video {
   font-size: 40px;
 }
 
+.text-\[33px\] {
+  font-size: 33px;
+}
+
+.text-\[433px\] {
+  font-size: 433px;
+}
+
 .font-light {
   font-weight: 300;
 }
@@ -2001,8 +2051,21 @@ video {
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
+.text-\[wepx\] {
+  color: wepx;
+}
+
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
+}
+
+.line-through {
+  text-decoration-line: line-through;
 }
 
 .outline-0 {
@@ -2038,6 +2101,12 @@ video {
 
 .placeholder\:uppercase::placeholder {
   text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .sm\:inline {
+    display: inline;
+  }
 }
 
 @media (min-width: 768px) {
