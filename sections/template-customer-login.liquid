@@ -1,30 +1,72 @@
-<section class="w-full flex items-center flex-col">
-  {% form 'customer_login' %}
+<section class="w-full flex justify-center flex-row" x-data="{ loginForm: true, pwRecoverForm: false}">
+
+  <section x-show="loginForm">
+    {% form 'customer_login' %}
 
 
-    <h1 class="text-[34px] font-bold mt-12 mb-5 uppercase">Login to your account</h1>
+      <h1 class="text-[34px] font-bold mt-12 mb-5 uppercase">Login to your account</h1>
 
-    {% if form.errors %}
+      {% if form.errors %}
 
-      <section class="bg-red-100 border-red-400 text-red-700 px-4 py-3" role="alert">
-        <strong class="font-bold">Error!</strong>
-        <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+        <section class="bg-red-100 border-red-400 text-red-700 px-4 py-3" role="alert">
+          <strong class="font-bold">Error!</strong>
+          <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+        </section>
+
+      {% endif %}
+
+      <section>
+        <input
+          class="border w-full p-2 my-1"
+          type="email"
+          name="customer[email]"
+          id="email_address"
+          placeholder="Email Address"
+          autocomplete="email" />
+
       </section>
 
-    {% endif %}
+      {% if form.password_needed %}
+        <section>
 
-    <section>
-      <input
-        class="border w-full p-2 my-1"
-        type="email"
-        name="customer[email]"
-        id="email_address"
-        placeholder="Email Address"
-        autocomplete="email" />
+          <input
+            class="border w-full p-2 my-1"
+            placeholder="Password"
+            type="password"
+            name="customer[password]"
+            id="password"
+            autocomplete="current-password" />
+        </section>
+      {% endif %}
 
-    </section>
+      <a
+        href="#"
+        x-on:click="loginForm = false; pwRecoverForm = true"
+        class="underline text-gray-500 hover:text-gray-900 my-2">Forgot your password?</a>
 
-    {% if form.password_needed %}
+      <button class="w-full bg-gray-700 text-white p-2 my-3 uppercase font-bold" type="submit">Login</button>
+
+
+    {% endform %}
+  </section>
+
+  <section x-show="pwRecoverForm">
+    {% form 'customer_login' %}
+
+
+      <h1 class="text-[34px] font-bold mt-12 mb-5 uppercase">Recover Password</h1>
+
+      {% if form.errors %}
+
+        <section class="bg-red-100 border-red-400 text-red-700 px-4 py-3" role="alert">
+          <strong class="font-bold">Error!</strong>
+          <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+        </section>
+
+      {% endif %}
+
+
+
       <section>
 
         <input
@@ -35,12 +77,18 @@
           id="password"
           autocomplete="current-password" />
       </section>
-    {% endif %}
 
 
-    <button class="w-full bg-gray-700 text-white p-2 my-3 uppercase font-bold" type="submit">Login</button>
+
+      <button class="w-full bg-gray-700 text-white p-2 my-3 uppercase font-bold" type="submit">Recover Password</button>
+
+      <a
+        href="#"
+        x-on:click="loginForm = true; pwRecoverForm = false"
+        class="underline text-gray-500 hover:text-gray-900">Back to login</a>
 
 
-  {% endform %}
+    {% endform %}
+  </section>
 
 </section>

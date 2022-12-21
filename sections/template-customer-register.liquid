@@ -1,0 +1,83 @@
+<section class="w-full flex justify-center flex-row" x-data="{ loginForm: true, pwRecoverForm: false}">
+
+  <section x-show="loginForm">
+    {% form 'create_customer' %}
+
+
+      <h1 class="text-[34px] font-bold mt-12 mb-5 uppercase">Login to your account</h1>
+
+      {% if form.errors %}
+
+        <section class="bg-red-100 border-red-400 text-red-700 px-4 py-3" role="alert">
+          <strong class="font-bold">Error!</strong>
+          <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+        </section>
+
+      {% endif %}
+
+      <section>
+        <input
+          class="border w-full p-2 my-1"
+          type="text"
+          name="customer[first_name]"
+          id="first_name"
+          placeholder="First Name"
+          autocomplete="given-name" />
+
+      </section>
+
+
+      <section>
+
+        <input
+          class="border w-full p-2 my-1"
+          placeholder="Last Name"
+          type="text"
+          name="customer[last_name]"
+          id="last_name"
+          autocomplete="family-name" />
+      </section>
+
+
+
+      <section>
+
+        <input
+          class="border w-full p-2 my-1"
+          placeholder="Birthday"
+          type="date"
+          name="customer[note][Birthday]"
+          id="birthday" />
+      </section>
+
+      <section>
+
+        <input
+          class="border w-full p-2 my-1"
+          placeholder="Email Address"
+          type="email"
+          name="customer[email]"
+          id="email_address"
+          autocomplete="email" />
+      </section>
+
+      <section>
+
+        <input
+          class="border w-full p-2 my-1"
+          placeholder="Password"
+          type="password"
+          name="customer[password]"
+          id="password"
+          autocomplete="password" />
+      </section>
+
+      <button class="w-full bg-gray-700 text-white p-2 my-3 uppercase font-bold" type="submit">Create Account</button>
+
+
+    {% endform %}
+  </section>
+
+
+
+</section>
