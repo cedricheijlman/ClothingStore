@@ -13,6 +13,11 @@
 
             {% for order in customer.orders %}
               <p>{{ order.name }}</p>
+
+              {% if order.line_items.first.image %}
+                <img src="{{ order.line_items.first.image | img_url: 'medium' }}" />
+              {% endif %}
+
             {% endfor %}
           {% endpaginate %}
         </section>
