@@ -1,26 +1,46 @@
-<section>
-  <h1>Account</h1>
+<section class="flex flex-col w-ful items-center">
 
 
-  <section>
+
+  <section class="flex justify-center  flex-col w-[80%] mt-8">
+    <h1 class="text-[19px] font-bold uppercase mb-7">Account</h1>
+
     {% assign number_of_orders = customer.orders | size %}
     {% if number_of_orders > 0 %}
-      <section>
-        <h2>Order History</h2>
+      <section class="w-full flex flex-col">
+        <h2 class="font-bold  mb-6">Order History</h2>
 
-        <section>
-          {% paginate customer.orders by 10 %}
+        <section class="flex flex-wrap">
+          {% paginate customer.orders by 4 %}
 
             {% for order in customer.orders %}
-              <p>{{ order.name }}</p>
+              <section class="flex flex-col w-[200px] mr-6 mb-6">
 
-              {% if order.line_items.first.image %}
-                <img src="{{ order.line_items.first.image | img_url: 'medium' }}" />
-              {% endif %}
+                {% if order.line_items.first.image %}
+                  <img src="{{ order.line_items.first.image | img_url: 'medium' }}" />
+                {% endif %}
 
+                <section class="flex justify-between my-2">
+
+                  <section>
+                    <h3>{{ order.name | link_to: order.customer_url }}</h3>
+                    <p>{{ order.financial_status_label }}</p>
+                  </section>
+
+                  <section class="flex flex-col items-end">
+                    <p class="bg-gray-700 text-white px-3 py-1 rounded-full text-[14px]">{{ order.fulfillment_status_label }}</p>
+                    <p>{{ order.total_price | money }}</p>
+                  </section>
+
+                </section>
+              </section>
             {% endfor %}
-          {% endpaginate %}
-        </section>
+          </section>
+          <section>
+            {% render 'pagination', pagination: paginate %}
+          </section>
+
+        {% endpaginate %}
       </section>
     {% endif %}
   </section>
