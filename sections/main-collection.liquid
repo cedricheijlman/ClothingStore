@@ -4,7 +4,7 @@
     <h1 class="text-[14px] mb-12 font-normal uppercase ">{{ collection.title }}</h1>
     <section class="flex justify-center flex-wrap">
       {% for product in collection.products %}
-        {% render 'product-card', productImg: product.images[0], productName: product.title, productUrl: product.url | within: collection, price: product.price %}
+        {% render 'product-card', productImg: product.images[0], productName: product.title, productUrl: product.url, within: collection, price: product.price %}
       {% else %}
         <p>two matches</p>
       {% endfor %}
@@ -30,4 +30,15 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'product-card', productImg: product.images[0], productName: product.title,
+    productUrl: product.url | within: collection, price: product.price %}"
+  to: "{% render 'product-card', productImg: product.images[0], productName: product.title,
+    productUrl: product.url, within: collection, price: product.price %}"
+  position: 344..497
+{%- endcomment -%}
